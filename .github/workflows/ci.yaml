@@ -1,0 +1,17 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  name: CI
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: npm run next build
+      - run: npx percy snapshot out/ # or any directory such as public/
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
