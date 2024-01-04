@@ -1,10 +1,13 @@
+name: Percy
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  name: CI
-  build:
+  percy-snapshot:
+    name: Run Percy snapshot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
